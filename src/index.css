@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --ink: #1A2024;
+  --slate: #4C5960;
+  --bronze: #9C7A45;
+  --bronze-br: #B08D57;
+  --teal: #3F7F7C;
+  --paper: #EDF0F0;
+  --card: #FBFCFC;
+  --line: #D3DADA;
+  --line-soft: #E2E7E7;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #E9EDED;
+    --slate: #A6B2B6;
+    --bronze: #C9A469;
+    --bronze-br: #D8B97F;
+    --teal: #6FA9A5;
+    --paper: #12171A;
+    --card: #1A2125;
+    --line: #2C3639;
+    --line-soft: #242D31;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #E9EDED;
+  --slate: #A6B2B6;
+  --bronze: #C9A469;
+  --bronze-br: #D8B97F;
+  --teal: #6FA9A5;
+  --paper: #12171A;
+  --card: #1A2125;
+  --line: #2C3639;
+  --line-soft: #242D31;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,246 @@
+export const contenido = {
+  nav: {
+    marca: "APU Core BI",
+    links: [
+      { label: "El problema", href: "#problema" },
+      { label: "El sistema", href: "#sistema" },
+      { label: "Planes", href: "#planes" },
+      { label: "Quiénes somos", href: "#equipo" },
+    ],
+    ctaLabel: "Agendar diagnóstico",
+    ctaHref: "#contacto",
+  },
+  hero: {
+    titulo: "Estudiaste años para ejercer el derecho. Terminaste administrando una pyme entera.",
+    lede: "Secretaría, agenda, cobranzas, publicidad, atención al cliente, números. Todo eso lo llevás vos, entre audiencia y audiencia. **Ordenamos esas áreas una por una para que el estudio crezca sin que vos sumes horas.**",
+    ctaPrimario: { label: "Agendar diagnóstico", href: "#contacto" },
+    ctaSecundario: { label: "Ver cómo trabajamos", href: "#sistema" },
+    // La palabra rotativa "hoy sos..." se maneja como componente aparte
+    // (HeroRotativo.tsx), no como parte del texto
+  },
+  heroRotativo: {
+    prefijo: "Hoy sos",
+    palabras: [
+      "secretaría",
+      "agenda",
+      "cobranza",
+      "community manager",
+      "capacitador",
+      "administrador",
+      "vos, todos los días",
+    ],
+    cierre: "Ocho responsabilidades, una sola persona.",
+  },
+  problema: {
+    id: "problema",
+    eyebrow: "El problema",
+    titulo: "El estudio no deja de crecer por falta de trabajo",
+    parrafos: [
+      "Deja de crecer porque **cada área funciona de memoria**. La consulta que entró el martes quedó en un chat sin responder. El seguimiento de un cliente vive en la cabeza de alguien. **Nadie sabe cuánto costó conseguir el último caso, ni qué fuero deja plata y cuál sólo deja horas.**",
+      "Un estudio que factura bien y opera a mano tiene un techo bajo: crece hasta donde llega el aguante de sus socios. **Nuestro trabajo es correr ese techo poniendo cada área en su lugar**, con un procedimiento que se puede delegar, medir y revisar.",
+    ],
+    areas: [
+      { titulo: "Captación", texto: "De dónde vienen las consultas y a qué costo." },
+      { titulo: "Respuesta", texto: "Quién contesta, en cuánto tiempo y con qué criterio." },
+      { titulo: "Gestión de casos", texto: "Dónde vive cada expediente, cada plazo y cada tarea." },
+      { titulo: "Equipo", texto: "Qué hace cada persona y qué se le puede delegar." },
+      { titulo: "Cobranzas", texto: "Planes de pago, vencimientos, quién debe qué." },
+      { titulo: "Números", texto: "Costo por consulta, costo por cliente, rentabilidad por fuero." },
+    ],
+  },
+  sistema: {
+    id: "sistema",
+    eyebrow: "El sistema",
+    titulo: "El circuito completo, de la primera consulta al número final",
+    lede: "Cinco etapas encadenadas. Podés contratarlas por tramos o completas, pero funcionan porque se alimentan entre sí: lo que aprendemos al final del circuito corrige lo que hacemos al principio.",
+    etapas: [
+      {
+        numero: "01",
+        titulo: "Estrategia",
+        texto: "Antes de gastar un peso en publicidad definimos a quién le hablás y qué tipo de caso conviene buscar. **Analizamos tus fueros por rentabilidad real, no por volumen**: cuánto tiempo consume cada uno, cuánto deja y si el que paga tiene con qué pagar.",
+        tags: ["Análisis de cartera", "Definición de público", "Propuesta de valor"],
+      },
+      {
+        numero: "02",
+        titulo: "Captación",
+        texto: "Producimos el contenido y lo ponemos a trabajar. Guion, grabación, edición, publicación y campañas pagas en Meta con seguimiento de conversiones. **Sin promesas de viralidad: campañas medidas, con reglas claras de qué se escala y qué se corta.**",
+        tags: ["Guion y grabación", "Edición", "Meta Ads", "Seguimiento de conversiones"],
+      },
+      {
+        numero: "03",
+        titulo: "Conversión",
+        texto: "**La mayoría de las consultas se pierden acá, no en la publicidad.** Ordenamos la mensajería en un solo lugar y clasificamos cada consulta que entra: de qué se trata, si es un caso viable y qué urgencia tiene. Tu secretaria trabaja sobre una lista ordenada, no sobre un chat desbordado.",
+        tags: ["WhatsApp centralizado", "Clasificación de consultas", "Respuestas asistidas"],
+      },
+      {
+        numero: "04",
+        titulo: "Gestión",
+        texto: "Un sistema propio donde viven clientes, casos, citas, seguimientos y tareas del equipo. Se abre con un link y el mail de cada persona, con los permisos que corresponden. **Incluye la carga de novedades del portal judicial y el reparto diario de tareas entre abogados y secretaría.**",
+        tags: ["Clientes y casos", "Citas y seguimientos", "Tareas por persona", "Planes de pago"],
+      },
+      {
+        numero: "05",
+        titulo: "Control",
+        texto: "Al cierre de cada mes, un informe con los números que importan: cuánto costó cada consulta, cuánto cada cliente nuevo, qué fuero rindió, qué campaña conviene sostener y cuál cortar. **Ese informe vuelve a la etapa 01 y ajusta la estrategia del mes siguiente.**",
+        tags: ["Costo por consulta", "Costo por cliente", "Rendimiento por fuero", "Informe mensual"],
+      },
+    ],
+  },
+  comoTrabajamos: {
+    id: "como-trabajamos",
+    eyebrow: "Cómo trabajamos, y qué no vas a encontrar acá",
+    titulo: "Todo lo que ofrecemos lo construimos primero para un estudio jurídico propio, y lo seguimos operando todos los días",
+    lede: "No es un método aprendido en un curso: es la forma en que trabajamos nosotros.",
+    hacemos: [
+      "**Te mostramos el sistema funcionando antes de que contrates nada.**",
+      "Dejamos **por escrito el alcance, los plazos y quién hace cada cosa**.",
+      "Medimos **con números de tu negocio: consultas, casos, costos, cobranza**.",
+      "Capacitamos a tu equipo para que **el sistema no dependa de nosotros**.",
+      "Revisamos los números con vos **una vez por mes, con el informe en la mano**.",
+    ],
+    noHacemos: [
+      "Prometer **una cantidad de clientes que nadie puede garantizar**.",
+      "Vender \"presencia digital\" **sin explicar qué hace cada pieza**.",
+      "Reportar alcance y seguidores **como si fueran resultados**.",
+      "Dejarte un informe de recomendaciones **y desaparecer**.",
+      "Empezar a producir contenido **sin antes ordenar la operación**.",
+    ],
+  },
+  casosResultados: {
+    id: "casos",
+    eyebrow: "Resultados",
+    titulo: "Así se ve un estudio ordenado, desde adentro",
+    lede: "Capturas y números reales de los estudios que ya operan con el sistema. No maquetas, no diseños de referencia: la pantalla que usan todos los días.",
+    emptyState: {
+      titulo: "Casos en documentación",
+      texto: "Estamos armando el material audiovisual de los estudios que ya operan con el sistema. Esta sección se actualiza en las próximas semanas.",
+    },
+  },
+  planes: {
+    id: "planes",
+    eyebrow: "Tres formas de empezar",
+    titulo: "Elegís el tramo del circuito que tu estudio necesita hoy",
+    lede: "Se puede subir de plan sin rehacer nada: cada etapa está construida para engancharse con la siguiente.",
+    items: [
+      {
+        id: "base",
+        nombre: "Base",
+        destacado: false,
+        quien: "Para el estudio que necesita que entren consultas",
+        features: [
+          "Análisis de cartera y definición de público",
+          "Plan de contenido mensual",
+          "Grabación y edición",
+          "Campañas en Meta con seguimiento",
+          "Reporte mensual de captación",
+        ],
+        ctaLabel: "Pedir presupuesto",
+      },
+      {
+        id: "operacion",
+        nombre: "Operación",
+        destacado: true,
+        etiquetaDestacado: "El más elegido",
+        quien: "Para el estudio que ya recibe consultas y las pierde",
+        features: [
+          "Todo lo del plan Base",
+          "WhatsApp del estudio centralizado",
+          "Clasificación de consultas que entran",
+          "Respuestas asistidas para secretaría",
+          "Sistema de gestión: clientes, casos y citas",
+        ],
+        ctaLabel: "Pedir presupuesto",
+      },
+      {
+        id: "integral",
+        nombre: "Integral",
+        destacado: false,
+        quien: "Para el estudio que quiere manejarse con números",
+        features: [
+          "Todo lo del plan Operación",
+          "Tareas diarias por persona y por caso",
+          "Novedades del portal judicial cargadas al sistema",
+          "Planes de pago y control de cobranza",
+          "Informe mensual de números y revisión de estrategia",
+        ],
+        ctaLabel: "Pedir presupuesto",
+      },
+    ],
+    complementos: [
+      {
+        nombre: "Control y estrategia",
+        aplicaA: "Se suma a cualquier plan",
+        texto: "Análisis financiero del estudio completo: costo real de cada cliente nuevo, rentabilidad por fuero, punto de equilibrio y una recomendación fundada sobre si conviene ampliarse, sostener o cambiar de rumbo. Revisión trimestral con documento escrito.",
+      },
+      {
+        nombre: "Inteligencia de datos",
+        aplicaA: "Se suma al plan Integral",
+        texto: "Tableros con el histórico completo del estudio: evolución de consultas, conversión por canal, duración media de los casos, comportamiento de cobranza. Para el estudio que ya tiene la operación ordenada y quiere entender la tendencia.",
+      },
+    ],
+    notaPrecios: "Los tres planes se cotizan después del diagnóstico. Trabajamos con un pago de implementación por única vez, que cubre el armado del sistema, y un abono mensual fijo según el plan. No hay costos ocultos ni permanencia mínima obligatoria.",
+  },
+  equipo: {
+    id: "equipo",
+    eyebrow: "Quiénes somos",
+    titulo: "Somos dos",
+    lede: "No tercerizamos: el que te atiende en la videollamada es el que después hace el trabajo.",
+    personas: [
+      {
+        nombre: "Andrés Royón",
+        rol: "Sistemas, procesos y análisis",
+        foto: "/media/equipo/andres.jpg",
+        bio: "Licenciado en administración de empresas. Diseñó y opera el sistema completo de dos estudios jurídicos: gestión de casos, clasificación de consultas, control de cobranza e informes de rentabilidad por fuero. Se ocupa del diagnóstico, la arquitectura del sistema y el análisis de los números.",
+      },
+      {
+        nombre: "Osvaldo Casabella",
+        rol: "Contenido, producción y campañas",
+        foto: "/media/equipo/osvi.jpg",
+        bio: "Community manager y realizador audiovisual. Lleva la producción de contenido y las campañas pagas de ambos estudios: guion, grabación, edición, publicación y gestión de pauta en Meta. Se ocupa de que el estudio tenga algo que mostrar y de que llegue a quien tiene que llegar.",
+      },
+    ],
+  },
+  comoEmpezamos: {
+    id: "como-empezamos",
+    eyebrow: "Cómo empezamos",
+    titulo: "El diagnóstico tiene un costo, y se descuenta íntegro del primer mes si decidís avanzar",
+    lede: "Cobramos esa primera instancia porque es trabajo real: relevamos tu operación y te entregamos un documento, avancemos o no.",
+    pasos: [
+      {
+        numero: "Paso 1",
+        titulo: "Videollamada",
+        texto: "Una hora. Revisamos cómo entra y cómo se atiende hoy cada consulta, y **dónde se está perdiendo trabajo**.",
+      },
+      {
+        numero: "Paso 2",
+        titulo: "Propuesta escrita",
+        texto: "Te entregamos el diagnóstico y una propuesta con alcance, plazos y **precio cerrado. Sin letra chica.**",
+      },
+      {
+        numero: "Paso 3",
+        titulo: "Implementación",
+        texto: "Armamos el sistema y capacitamos al equipo. **Plazo definido de antemano y un responsable por cada entrega.**",
+      },
+      {
+        numero: "Paso 4",
+        titulo: "Operación",
+        texto: "Trabajo mensual sobre el circuito y **una reunión de revisión con los números del mes sobre la mesa**.",
+      },
+    ],
+  },
+  ctaFinal: {
+    titulo: "Contanos cómo funciona tu estudio hoy",
+    nota: "Si en la videollamada concluimos que no te podemos ayudar, **te lo decimos ahí mismo y no te cobramos el diagnóstico**.",
+    ctaLabel: "Agendar la videollamada",
+    ctaHref: "#contacto",
+    ubicacion: "Córdoba, Argentina. Trabajamos con estudios de todo el país por videollamada.",
+  },
+  footer: {
+    marca: "APU Core BI — Consultoría de crecimiento",
+    links: [
+      { label: "LinkedIn", href: "#" },
+      { label: "Instagram", href: "#" },
+      { label: "WhatsApp", href: "#" },
+    ],
+  },
+}
