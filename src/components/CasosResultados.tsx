@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react'
 import { contenido } from '../data/contenido'
 import { casos } from '../data/casos'
 import type { CasoResultado } from '../data/casos'
@@ -15,6 +15,8 @@ function CasoMedia({
   emptyTitulo: string
   emptyTexto: string
 }) {
+  const [expanded, setExpanded] = useState(false)
+
   if (caso.media.length === 0) {
     return (
       <div
@@ -34,8 +36,27 @@ function CasoMedia({
 
   if (media.type === 'image') {
     return (
-      <div className="aspect-[16/10] overflow-hidden bg-card">
-        <img src={media.src} alt={media.alt} className="h-full w-full object-cover" />
+      <div
+        className={`relative overflow-hidden bg-card ${expanded ? '' : 'aspect-[16/10]'}`}
+      >
+        <img
+          src={media.src}
+          alt={media.alt}
+          className={expanded ? 'h-auto w-full object-contain' : 'h-full w-full object-cover'}
+        />
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          aria-label={expanded ? 'Ver imagen recortada' : 'Ampliar imagen'}
+          aria-pressed={expanded}
+          className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-ink/70 text-paper backdrop-blur transition-colors hover:bg-ink/90 lg:hidden"
+        >
+          {expanded ? (
+            <Minimize2 size={16} strokeWidth={1.75} />
+          ) : (
+            <Maximize2 size={16} strokeWidth={1.75} />
+          )}
+        </button>
       </div>
     )
   }
@@ -144,7 +165,7 @@ function CasosResultados() {
 
         <div className="mt-12">
           <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6">
+            <div className="flex items-start gap-6">
               {casos.map((caso) => (
                 <div key={caso.id} className="min-w-0 flex-[0_0_100%] lg:flex-[0_0_80%]">
                   <CasoCard

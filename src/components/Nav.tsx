@@ -1,4 +1,5 @@
 import { contenido } from '../data/contenido'
+import logoApu from '../assets/logoapu.png'
 
 function Nav() {
   const { nav } = contenido
@@ -6,8 +7,8 @@ function Nav() {
   return (
     <header className="sticky top-0 z-50 h-[68px] border-b border-line-soft bg-paper/80 backdrop-blur">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
-        <a href="#" className="font-serif-display text-xl text-ink">
-          {nav.marca}
+        <a href="#" className="flex items-center gap-2">
+          <img src={logoApu} alt={nav.marca} className="h-16 w-auto" />
         </a>
 
         <div className="flex items-center gap-8">
