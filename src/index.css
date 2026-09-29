@@ -11,6 +11,7 @@
   --card: #FBFCFC;
   --line: #D3DADA;
   --line-soft: #E2E7E7;
+  --error: #A63D2A;
 
   color-scheme: light dark;
 }
@@ -26,6 +27,7 @@
     --card: #1A2125;
     --line: #2C3639;
     --line-soft: #242D31;
+    --error: #E58A74;
   }
 }
 
@@ -39,6 +41,7 @@
   --card: #1A2125;
   --line: #2C3639;
   --line-soft: #242D31;
+  --error: #E58A74;
 }
 
 * {

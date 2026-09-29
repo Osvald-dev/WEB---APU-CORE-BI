@@ -1,3 +1,22 @@
+// Formulario previo al diagnóstico. Todos los CTA de la web apuntan acá:
+// el hash abre FormularioDiagnostico.tsx en pantalla completa.
+export const URL_FORMULARIO = "#diagnostico"
+
+// Apps Script que recibe las respuestas y las guarda en la planilla.
+export const URL_APPS_SCRIPT =
+  "https://script.google.com/macros/s/AKfycbxa6HwxJ_5pUSGF-BLXsKttqSA1mAmcrRij5NzOZtNvyo6fSsWmgtcQNncZAq4xs63Y/exec"
+
+// Las URL entre corchetes se consideran pendientes: la confirmación del
+// formulario las reemplaza por el aviso de que coordinamos por WhatsApp.
+// TODO: reemplazar por el link real del calendario.
+export const URL_CALENDARIO = "[URL]"
+// TODO: reemplazar por el link real de pago.
+export const URL_PAGO = "[URL]"
+// TODO: reemplazar por el link real (https://wa.me/549...).
+export const WHATSAPP_CONTACTO = "[URL wa.me]"
+// TODO: confirmar el monto antes de publicar.
+export const PRECIO_DIAGNOSTICO = "$80.000"
+
 export const contenido = {
   nav: {
     marca: "APU Core BI",
@@ -8,12 +27,13 @@ export const contenido = {
       { label: "Quiénes somos", href: "#equipo" },
     ],
     ctaLabel: "Agendar diagnóstico",
-    ctaHref: "#contacto",
+    ctaHref: URL_FORMULARIO,
   },
   hero: {
     titulo: "Estudiaste años para ejercer el derecho. Terminaste administrando una pyme entera.",
     lede: "Secretaría, agenda, cobranzas, publicidad, atención al cliente, números. Todo eso lo llevás vos, entre audiencia y audiencia. **Ordenamos esas áreas una por una para que el estudio crezca sin que vos sumes horas.**",
-    ctaPrimario: { label: "Agendar diagnóstico", href: "#contacto" },
+    publico: "Para abogados que trabajan solos y estudios de hasta cinco personas.",
+    ctaPrimario: { label: "Agendar diagnóstico", href: URL_FORMULARIO },
     ctaSecundario: { label: "Ver cómo trabajamos", href: "#sistema" },
     // La palabra rotativa "hoy sos..." se maneja como componente aparte
     // (HeroRotativo.tsx), no como parte del texto
@@ -38,7 +58,7 @@ export const contenido = {
     titulo: "El estudio no deja de crecer por falta de trabajo",
     parrafos: [
       "Deja de crecer porque **cada área funciona de memoria**. La consulta que entró el martes quedó en un chat sin responder. El seguimiento de un cliente vive en la cabeza de alguien. **Nadie sabe cuánto costó conseguir el último caso, ni qué fuero deja plata y cuál sólo deja horas.**",
-      "Un estudio que factura bien y opera a mano tiene un techo bajo: crece hasta donde llega el aguante de sus socios. **Nuestro trabajo es correr ese techo poniendo cada área en su lugar**, con un procedimiento que se puede delegar, medir y revisar.",
+      "Un estudio que factura bien y opera a mano tiene un techo bajo: crece hasta donde llega tu aguante. **Nuestro trabajo es correr ese techo poniendo cada área en su lugar**, con un procedimiento que se puede delegar, medir y revisar.",
     ],
     areas: [
       { titulo: "Captación", texto: "De dónde vienen las consultas y a qué costo." },
@@ -48,6 +68,14 @@ export const contenido = {
       { titulo: "Cobranzas", texto: "Planes de pago, vencimientos, quién debe qué." },
       { titulo: "Números", texto: "Costo por consulta, costo por cliente, rentabilidad por fuero." },
     ],
+    estrategia: {
+      titulo: "Primero la estrategia, después el marketing",
+      texto: "Una agencia arranca en marketing. Nosotros arrancamos en estrategia: antes de gastar un peso decidimos a quién conviene buscar, según qué fuero deja más por hora trabajada y qué cliente puede pagar. Después salimos a buscar exactamente a ese cliente.",
+      contraste: [
+        "Treinta clientes nuevos de un fuero que no paga: más audiencias, más fricción, cobranzas que no cierran. El estudio factura menos y trabaja el doble.",
+        "Diez clientes que encajan con lo que el estudio sabe hacer, que pueden pagar y que dejan margen. Menos volumen, más rentabilidad y un estudio que sigue siendo vivible.",
+      ],
+    },
   },
   sistema: {
     id: "sistema",
@@ -58,20 +86,25 @@ export const contenido = {
       {
         numero: "01",
         titulo: "Estrategia",
-        texto: "Antes de gastar un peso en publicidad definimos a quién le hablás y qué tipo de caso conviene buscar. **Analizamos tus fueros por rentabilidad real, no por volumen**: cuánto tiempo consume cada uno, cuánto deja y si el que paga tiene con qué pagar.",
-        tags: ["Análisis de cartera", "Definición de público", "Propuesta de valor"],
+        texto: "Antes de gastar un peso en publicidad definimos a quién le hablás y qué tipo de caso conviene buscar, y fijamos por escrito un objetivo de cuántas consultas esperamos y de qué fueros. **Analizamos tus fueros por rentabilidad real, no por volumen**: cuánto tiempo consume cada uno, cuánto deja y si el que paga tiene con qué pagar.",
+        tags: ["Análisis de cartera", "Definición de público", "Propuesta de valor", "Objetivo mensual"],
       },
       {
         numero: "02",
         titulo: "Captación",
-        texto: "Producimos el contenido y lo ponemos a trabajar. Guion, grabación, edición, publicación y campañas pagas en Meta con seguimiento de conversiones. **Sin promesas de viralidad: campañas medidas, con reglas claras de qué se escala y qué se corta.**",
+        texto: "Producimos el contenido y lo ponemos a trabajar. Guion, grabación, edición, publicación y campañas pagas en Meta con seguimiento de conversiones, segmentadas al cliente que definimos en la etapa 01. **Sin promesas de viralidad: campañas medidas, con reglas claras de qué se escala y qué se corta.**",
         tags: ["Guion y grabación", "Edición", "Meta Ads", "Seguimiento de conversiones"],
       },
       {
         numero: "03",
-        titulo: "Conversión",
-        texto: "**La mayoría de las consultas se pierden acá, no en la publicidad.** Ordenamos la mensajería en un solo lugar y clasificamos cada consulta que entra: de qué se trata, si es un caso viable y qué urgencia tiene. Tu secretaria trabaja sobre una lista ordenada, no sobre un chat desbordado.",
-        tags: ["WhatsApp centralizado", "Clasificación de consultas", "Respuestas asistidas"],
+        titulo: "Recepción",
+        texto: "**La mayoría de las consultas se pierden acá, no en la publicidad.** Ordenamos la mensajería en un solo lugar y clasificamos cada consulta que entra: de qué se trata, si es un caso viable y qué urgencia tiene. Tu secretaria trabaja sobre una lista ordenada, no sobre un chat desbordado. Capacitamos a quien atiende y medimos cuántas consultas entran contra cuántas se convierten en clientes.",
+        tags: [
+          "WhatsApp centralizado",
+          "Clasificación de consultas",
+          "Capacitación de quien atiende",
+          "Consultas recibidas vs. captadas",
+        ],
       },
       {
         numero: "04",
@@ -86,6 +119,32 @@ export const contenido = {
         tags: ["Costo por consulta", "Costo por cliente", "Rendimiento por fuero", "Informe mensual"],
       },
     ],
+    embudo: {
+      titulo: "Los cuatro lugares donde se rompe un embudo",
+      puntos: [
+        {
+          sintoma: "Nadie vio el aviso",
+          diagnostico: "Problema de pauta o de segmentación.",
+          texto: "Se ajusta el presupuesto o el público.",
+        },
+        {
+          sintoma: "Vieron pero no escribieron",
+          diagnostico: "Problema de mensaje.",
+          texto: "El aviso no le habla a nadie en particular.",
+        },
+        {
+          sintoma: "Escribieron pero no les contestaron a tiempo",
+          diagnostico: "Problema de recepción.",
+          texto: "Se ordena la mensajería y se capacita a quien atiende.",
+        },
+        {
+          sintoma: "Contestaron pero no firmaron",
+          diagnostico: "Problema de estrategia.",
+          texto: "Se está atrayendo al cliente equivocado y el circuito vuelve a la etapa 01.",
+        },
+      ],
+      cierre: "Medir sirve para saber cuál de los cuatro está roto este mes. **Cada uno se arregla distinto, y confundirlos cuesta meses.**",
+    },
   },
   comoTrabajamos: {
     id: "como-trabajamos",
@@ -98,13 +157,14 @@ export const contenido = {
       "Medimos **con números de tu negocio: consultas, casos, costos, cobranza**.",
       "Capacitamos a tu equipo para que **el sistema no dependa de nosotros**.",
       "Revisamos los números con vos **una vez por mes, con el informe en la mano**.",
+      "Cambiamos **una sola cosa por mes, decidida con vos**, para saber qué funcionó.",
     ],
     noHacemos: [
       "Prometer **una cantidad de clientes que nadie puede garantizar**.",
       "Vender \"presencia digital\" **sin explicar qué hace cada pieza**.",
       "Reportar alcance y seguidores **como si fueran resultados**.",
       "Dejarte un informe de recomendaciones **y desaparecer**.",
-      "Empezar a producir contenido **sin antes ordenar la operación**.",
+      "Empezar a producir contenido **sin antes definir a quién le estamos hablando**.",
     ],
   },
   casosResultados: {
@@ -119,67 +179,60 @@ export const contenido = {
   },
   planes: {
     id: "planes",
-    eyebrow: "Tres formas de empezar",
-    titulo: "Elegís el tramo del circuito que tu estudio necesita hoy",
-    lede: "Se puede subir de plan sin rehacer nada: cada etapa está construida para engancharse con la siguiente.",
+    eyebrow: "Planes",
+    titulo: "Tres formas de empezar",
+    lede: "Los tres incluyen estrategia, marketing y sistema de gestión. Cada uno agrega profundidad, no más volumen de trabajo. Se puede subir de plan sin rehacer nada.",
     items: [
       {
-        id: "base",
-        nombre: "Base",
+        id: "captacion",
+        nombre: "Captación",
         destacado: false,
-        quien: "Para el estudio que necesita que entren consultas",
+        quien: "Para el estudio que necesita que entren consultas, y que entren las correctas.",
         features: [
-          "Análisis de cartera y definición de público",
-          "Plan de contenido mensual",
-          "Grabación y edición",
-          "Campañas en Meta con seguimiento",
+          "Análisis de cartera y definición del cliente a buscar",
+          "Plan de contenido, grabación y edición",
+          "Campañas en Meta con seguimiento de conversiones",
+          "Sistema de gestión: clientes, casos, citas, tareas y cobranza",
           "Reporte mensual de captación",
         ],
         ctaLabel: "Pedir presupuesto",
+        ctaHref: URL_FORMULARIO,
       },
       {
         id: "operacion",
         nombre: "Operación",
         destacado: true,
-        etiquetaDestacado: "El más elegido",
-        quien: "Para el estudio que ya recibe consultas y las pierde",
+        etiquetaDestacado: "Recomendado",
+        quien: "Para el estudio que ya recibe consultas y las pierde en el camino.",
         features: [
-          "Todo lo del plan Base",
+          "Todo lo del plan Captación",
           "WhatsApp del estudio centralizado",
-          "Clasificación de consultas que entran",
-          "Respuestas asistidas para secretaría",
-          "Sistema de gestión: clientes, casos y citas",
+          "Clasificación y filtrado de cada consulta",
+          "Capacitación de quien atiende",
+          "Medición de consultas recibidas contra captadas",
         ],
         ctaLabel: "Pedir presupuesto",
+        ctaHref: URL_FORMULARIO,
       },
       {
-        id: "integral",
-        nombre: "Integral",
+        id: "direccion",
+        nombre: "Dirección",
         destacado: false,
-        quien: "Para el estudio que quiere manejarse con números",
+        quien: "Para el estudio que quiere decidir con números si ampliarse, sumar un fuero o cambiar de rumbo.",
         features: [
           "Todo lo del plan Operación",
-          "Tareas diarias por persona y por caso",
-          "Novedades del portal judicial cargadas al sistema",
-          "Planes de pago y control de cobranza",
-          "Informe mensual de números y revisión de estrategia",
+          "Informe mensual: costo por consulta, costo por cliente y rendimiento por fuero",
+          "Comparación contra el objetivo y detección del cuello de botella del mes",
+          "Ajuste de la estrategia mes a mes, decidido en una reunión con vos",
+          "Rentabilidad por fuero y evaluación de crecimiento",
         ],
         ctaLabel: "Pedir presupuesto",
+        ctaHref: URL_FORMULARIO,
       },
     ],
-    complementos: [
-      {
-        nombre: "Control y estrategia",
-        aplicaA: "Se suma a cualquier plan",
-        texto: "Análisis financiero del estudio completo: costo real de cada cliente nuevo, rentabilidad por fuero, punto de equilibrio y una recomendación fundada sobre si conviene ampliarse, sostener o cambiar de rumbo. Revisión trimestral con documento escrito.",
-      },
-      {
-        nombre: "Inteligencia de datos",
-        aplicaA: "Se suma al plan Integral",
-        texto: "Tableros con el histórico completo del estudio: evolución de consultas, conversión por canal, duración media de los casos, comportamiento de cobranza. Para el estudio que ya tiene la operación ordenada y quiere entender la tendencia.",
-      },
-    ],
-    notaPrecios: "Los tres planes se cotizan después del diagnóstico. Trabajamos con un pago de implementación por única vez, que cubre el armado del sistema, y un abono mensual fijo según el plan. No hay costos ocultos ni permanencia mínima obligatoria.",
+    resumen: "El primero te trae los clientes correctos. El segundo, además, se asegura de que no se te pierdan por el camino. El tercero, además, te dice mes a mes dónde está el problema y qué conviene cambiar.",
+    notaGestion: "**¿Por qué el sistema de gestión va en los tres?** Porque sin registrar qué consultas terminan siendo clientes, la publicidad aprende a conseguir clics, no clientes.",
+    notaPrecios: "Los tres planes se cotizan después del diagnóstico. Trabajamos con un pago de implementación por única vez, que se puede dividir en dos meses sin recargo, y un abono mensual fijo. La inversión en publicidad la pagás directo a Meta y nunca pasa por nosotros. Sin costos ocultos ni permanencia mínima.",
   },
   equipo: {
     id: "equipo",
@@ -209,33 +262,160 @@ export const contenido = {
     pasos: [
       {
         numero: "Paso 1",
-        titulo: "Videollamada",
-        texto: "Una hora. Revisamos cómo entra y cómo se atiende hoy cada consulta, y **dónde se está perdiendo trabajo**.",
+        titulo: "Formulario",
+        texto: "**Ocho preguntas, tres minutos.** Nos contás cómo funciona tu estudio hoy y elegís el horario.",
       },
       {
         numero: "Paso 2",
-        titulo: "Propuesta escrita",
-        texto: "Te entregamos el diagnóstico y una propuesta con alcance, plazos y **precio cerrado. Sin letra chica.**",
+        titulo: "Videollamada",
+        texto: "Una hora. Te devolvemos lo que vemos en tus respuestas y **te mostramos el sistema funcionando**.",
       },
       {
         numero: "Paso 3",
-        titulo: "Implementación",
-        texto: "Armamos el sistema y capacitamos al equipo. **Plazo definido de antemano y un responsable por cada entrega.**",
+        titulo: "Propuesta escrita",
+        texto: "En 48 horas, un solo plan recomendado con alcance, plazos y **precio cerrado. Sin letra chica.**",
       },
       {
         numero: "Paso 4",
-        titulo: "Operación",
-        texto: "Trabajo mensual sobre el circuito y **una reunión de revisión con los números del mes sobre la mesa**.",
+        titulo: "Implementación y operación",
+        texto: "Armamos el sistema, capacitamos al equipo y **cada mes revisamos los números juntos**.",
       },
     ],
   },
   ctaFinal: {
+    cierre: "La profesión es para disfrutarla, no para vivir sobre ella. Nuestro trabajo es que el estudio rinda más sin que vos sumes horas.",
     titulo: "Contanos cómo funciona tu estudio hoy",
     nota: "Si en la videollamada concluimos que no te podemos ayudar, **te lo decimos ahí mismo y no te cobramos el diagnóstico**.",
     ctaLabel: "Agendar la videollamada",
-    ctaHref: "#contacto",
+    ctaHref: URL_FORMULARIO,
+    notaCta: "Ocho preguntas, tres minutos.",
     ubicacion: "Córdoba, Argentina. Trabajamos con estudios de todo el país por videollamada.",
   },
+  // Las opciones de las preguntas se copian tal cual: el Apps Script las valida.
+  formulario: {
+    etiqueta: "Diagnóstico",
+    cerrar: "Cerrar formulario",
+    inicio: {
+      titulo: "Contanos cómo funciona tu estudio hoy",
+      texto: "Ocho preguntas, tres minutos. Al terminar elegís el horario de la videollamada.",
+      boton: "Empezar",
+    },
+    indicador: "Pregunta {n} de {total}",
+    anterior: "Anterior",
+    siguiente: "Siguiente",
+    errorRango: "Ingresá un número entre {min} y {max}.",
+    errorServidor: "Revisá esta respuesta y volvé a enviar.",
+    preguntas: [
+      {
+        tipo: "numeros",
+        titulo: "¿Hace cuánto ejercés y cómo está formado el estudio hoy?",
+        campos: [
+          { clave: "anios_ejercicio", label: "Años de ejercicio", min: 0, max: 70 },
+          { clave: "abogados", label: "Cantidad de abogados, contándote", min: 1, max: 100 },
+          {
+            clave: "apoyo",
+            label: "Cantidad de personas de apoyo",
+            ayuda: "Secretaría, administración, cadetería. Si no tenés, poné 0.",
+            min: 0,
+            max: 100,
+          },
+        ],
+      },
+      {
+        tipo: "multiple",
+        clave: "fueros",
+        titulo: "¿Qué fueros trabajás?",
+        opciones: ["Laboral", "Civil", "Familia", "Comercial", "Penal", "Previsional", "Otros"],
+        otros: { opcion: "Otros", clave: "fueros_otros", label: "¿Cuáles? (opcional)" },
+      },
+      {
+        tipo: "unica",
+        clave: "consultas_mes",
+        titulo: "¿Cuántas consultas nuevas recibís por mes, aproximadamente?",
+        opciones: ["Menos de 10", "Entre 10 y 30", "Más de 30", "No lo sé con precisión"],
+      },
+      {
+        tipo: "multiple",
+        clave: "canales",
+        titulo: "¿Por dónde te llegan? Marcá todas las que apliquen.",
+        opciones: [
+          "Recomendación",
+          "WhatsApp",
+          "Instagram",
+          "Google",
+          "Colegas",
+          "Teléfono",
+          "No sabría decir cuál trae más",
+        ],
+      },
+      {
+        tipo: "unica",
+        clave: "quien_contesta",
+        titulo: "¿Quién contesta la primera consulta y en cuánto tiempo, en promedio?",
+        opciones: [
+          "Yo mismo, en el día",
+          "Yo mismo, cuando puedo",
+          "Secretaría, en el día",
+          "Secretaría, cuando puede",
+          "Depende, no hay una regla",
+        ],
+      },
+      {
+        tipo: "unica",
+        clave: "donde_anota",
+        titulo: "¿Dónde anotás hoy los casos, los plazos y los seguimientos?",
+        opciones: [
+          "Un software de gestión",
+          "Planillas de Excel o Sheets",
+          "Agenda de papel",
+          "Drive con carpetas",
+          "Varias de estas a la vez",
+        ],
+      },
+      {
+        tipo: "unica",
+        clave: "costo_cliente",
+        titulo: "¿Sabés cuánto te costó conseguir el último cliente que firmó?",
+        opciones: ["Sí, lo tengo calculado", "Tengo una idea aproximada", "No, nunca lo medí"],
+      },
+      {
+        tipo: "texto",
+        clave: "un_anio",
+        titulo: "Si dentro de un año el estudio estuviera mejor, ¿qué habría cambiado?",
+      },
+    ],
+    contacto: {
+      titulo: "Último paso: ¿a quién le escribimos?",
+      campos: [
+        { clave: "nombre", label: "Tu nombre", type: "text", inputMode: "text", autoComplete: "name" },
+        { clave: "estudio", label: "Nombre del estudio", type: "text", inputMode: "text", autoComplete: "organization" },
+        { clave: "email", label: "Email", type: "email", inputMode: "email", autoComplete: "email" },
+        { clave: "whatsapp", label: "WhatsApp", type: "tel", inputMode: "tel", autoComplete: "tel" },
+      ],
+      honeypotLabel: "Sitio web",
+      errorRequerido: "Completá este campo.",
+      errorEmail: "Revisá el email: parece incompleto.",
+      errorWhatsapp: "Ingresá el número con código de área, al menos 8 dígitos.",
+      enviar: "Enviar y elegir horario",
+      enviando: "Enviando…",
+      errorEnvio: "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp",
+      reintentar: "Reintentar",
+      whatsapp: "Escribir por WhatsApp",
+    },
+    confirmacion: {
+      titulo: "Listo, {nombre}. Recibimos tus respuestas.",
+      calendario: { texto: "Elegí el horario de la videollamada", boton: "Elegir horario" },
+      pago: { texto: "Aboná el diagnóstico ({precio}). Se descuenta íntegro si avanzás", boton: "Ir al pago" },
+      pendiente: "Te escribimos por WhatsApp en menos de 24 horas para coordinar",
+      volver: "Volver a la web",
+    },
+    confirmarCierre: {
+      titulo: "¿Cerrar el formulario?",
+      texto: "Si cerrás ahora se borran las respuestas que cargaste.",
+      seguir: "Seguir completando",
+      cerrar: "Cerrar y borrar",
+    },
+  } as const,
   footer: {
     marca: "APU Core BI — Consultoría de crecimiento",
     links: [

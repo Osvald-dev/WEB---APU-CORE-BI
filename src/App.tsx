@@ -9,6 +9,7 @@ import Equipo from './components/Equipo'
 import ComoEmpezamos from './components/ComoEmpezamos'
 import CTAFinal from './components/CTAFinal'
 import Footer from './components/Footer'
+import FormularioDiagnostico from './components/FormularioDiagnostico'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <ComoEmpezamos />
       <CTAFinal />
       <Footer />
+      <FormularioDiagnostico />
     </div>
   )
 }

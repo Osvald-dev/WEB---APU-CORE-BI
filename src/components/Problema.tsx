@@ -52,6 +52,29 @@ function Problema() {
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-16">
+          <h3 className="font-serif-display text-2xl text-ink">{problema.estrategia.titulo}</h3>
+          <p className="mt-3 max-w-[62ch] font-sans text-slate">{problema.estrategia.texto}</p>
+
+          <div className="mt-8 grid grid-cols-1 gap-px bg-line min-[760px]:grid-cols-2">
+            {problema.estrategia.contraste.map((texto, i) => (
+              <div
+                key={texto}
+                className={`flex items-start gap-3 bg-card p-8 ${
+                  i === 1 ? 'outline outline-2 outline-offset-[-2px] outline-bronze' : ''
+                }`}
+              >
+                {i === 0 ? (
+                  <span className="mt-[7px] h-3 w-3 flex-none rounded-full border border-slate" />
+                ) : (
+                  <span className="mt-[12px] h-px w-3.5 flex-none bg-bronze" />
+                )}
+                <p className={`font-sans ${i === 0 ? 'text-slate' : 'text-ink'}`}>{texto}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

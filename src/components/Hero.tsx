@@ -31,6 +31,8 @@ function Hero() {
           </a>
         </div>
 
+        <p className="mt-4 font-sans text-sm text-slate">{hero.publico}</p>
+
         <div className="mt-16">
           <HeroRotativo />
         </div>

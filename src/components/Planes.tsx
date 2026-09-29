@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { contenido } from '../data/contenido'
+import RichText from './RichText'
 
 const container = (stagger: number) => ({
   hidden: {},
@@ -70,7 +71,7 @@ function Planes() {
               </ul>
 
               <a
-                href="#contacto"
+                href={plan.ctaHref}
                 className="mt-auto self-start border border-ink bg-ink px-5 py-3 font-sans text-sm text-paper transition-colors hover:bg-transparent hover:text-ink"
               >
                 {plan.ctaLabel}
@@ -79,15 +80,13 @@ function Planes() {
           ))}
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-px border-t border-line-soft bg-line min-[760px]:grid-cols-2">
-          {planes.complementos.map((complemento) => (
-            <div key={complemento.nombre} className="bg-card p-8">
-              <h3 className="font-serif-display text-[1.1rem] text-ink">{complemento.nombre}</h3>
-              <p className="mt-1 font-sans text-sm text-bronze">{complemento.aplicaA}</p>
-              <p className="mt-3 font-sans text-slate">{complemento.texto}</p>
-            </div>
-          ))}
-        </div>
+        <p className="mt-12 max-w-[40ch] font-serif-display text-[clamp(1.4rem,3vw,1.9rem)] leading-[1.2] text-ink">
+          {planes.resumen}
+        </p>
+
+        <p className="mt-6 max-w-[62ch] font-sans text-sm text-slate">
+          <RichText text={planes.notaGestion} />
+        </p>
 
         <p className="mt-10 max-w-[64ch] border-l-2 border-bronze pl-4 font-sans text-slate">
           {planes.notaPrecios}

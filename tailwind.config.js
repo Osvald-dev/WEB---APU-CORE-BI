@@ -13,6 +13,7 @@ export default {
         card: 'var(--card)',
         line: 'var(--line)',
         'line-soft': 'var(--line-soft)',
+        error: 'var(--error)',
       },
       fontFamily: {
         'serif-display': ['"Instrument Serif"', 'serif'],

@@ -2,6 +2,13 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { contenido } from '../data/contenido'
 import RichText from './RichText'
 
+const container = (stagger: number) => ({
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: stagger },
+  },
+})
+
 function Sistema() {
   const { sistema } = contenido
   const shouldReduceMotion = useReducedMotion()
@@ -57,6 +64,30 @@ function Sistema() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 border-t border-line pt-12">
+          <h3 className="font-serif-display text-2xl text-ink">{sistema.embudo.titulo}</h3>
+
+          <motion.div
+            className="mt-8 grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={container(shouldReduceMotion ? 0 : 0.08)}
+          >
+            {sistema.embudo.puntos.map((punto) => (
+              <motion.div key={punto.sintoma} className="bg-card px-[18px] py-5" variants={step}>
+                <h4 className="font-sans text-[0.97rem] font-semibold text-ink">{punto.sintoma}</h4>
+                <p className="mt-1 font-sans text-sm text-bronze">{punto.diagnostico}</p>
+                <p className="mt-2 font-sans text-[0.9rem] text-slate">{punto.texto}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <p className="mt-10 max-w-[64ch] border-l-2 border-bronze pl-4 font-sans text-slate">
+            <RichText text={sistema.embudo.cierre} />
+          </p>
         </div>
       </div>
     </section>
