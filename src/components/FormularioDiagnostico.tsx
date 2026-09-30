@@ -66,7 +66,7 @@ const TIMEOUT_MS = 20000
 // Paso donde vive cada clave, para volver ahí si el servidor la rechaza.
 const PASO_POR_CLAVE: Record<string, number> = {}
 preguntas.forEach((pregunta, i) => {
-  if (pregunta.tipo === 'numeros') pregunta.campos.forEach((c) => (PASO_POR_CLAVE[c.clave] = i + 1))
+  if (pregunta.tipo === 'chips') pregunta.grupos.forEach((g) => (PASO_POR_CLAVE[g.clave] = i + 1))
   else PASO_POR_CLAVE[pregunta.clave] = i + 1
   if (pregunta.tipo === 'multiple' && 'otros' in pregunta) PASO_POR_CLAVE[pregunta.otros.clave] = i + 1
 })
@@ -76,12 +76,6 @@ const esPendiente = (url: string) => !url || url.startsWith('[')
 
 const completar = (texto: string, valores: Record<string, string | number>) =>
   texto.replace(/\{(\w+)\}/g, (_, k: string) => String(valores[k] ?? ''))
-
-function errorNumero(valor: string, min: number, max: number) {
-  if (valor === '') return ''
-  const n = Number(valor)
-  return n >= min && n <= max ? '' : completar(formulario.errorRango, { min, max })
-}
 
 function errorContacto(clave: ClaveContacto, valor: string) {
   const v = valor.trim()
@@ -96,8 +90,9 @@ function pasoValido(paso: number, r: Respuestas) {
   const pregunta = preguntas[paso - 1]
   if (!pregunta) return true
   switch (pregunta.tipo) {
-    case 'numeros':
-      return pregunta.campos.every((c) => r[c.clave] !== '' && !errorNumero(r[c.clave], c.min, c.max))
+    case 'chips':
+      // Descarta también valores viejos de sessionStorage que ya no son opciones.
+      return pregunta.grupos.every((g) => (g.opciones as readonly string[]).includes(r[g.clave]))
     case 'multiple':
       return r[pregunta.clave].length > 0
     case 'unica':
@@ -156,6 +151,11 @@ const INPUT =
 const TITULO = 'font-serif-display text-[clamp(1.6rem,4.5vw,2.4rem)] leading-[1.15] text-ink focus:outline-none'
 const ERROR = 'font-sans text-sm text-error empty:hidden'
 
+const estiloOpcion = (marcada: boolean) =>
+  `cursor-pointer border bg-card transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-bronze ${
+    marcada ? 'border-bronze outline outline-1 outline-bronze' : 'border-line hover:border-slate'
+  }`
+
 function Opcion({
   tipo,
   name,
@@ -170,11 +170,7 @@ function Opcion({
   onChange: () => void
 }) {
   return (
-    <label
-      className={`flex min-h-11 cursor-pointer items-center gap-3 border bg-card px-4 py-3 transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-bronze ${
-        marcada ? 'border-bronze outline outline-1 outline-bronze' : 'border-line hover:border-slate'
-      }`}
-    >
+    <label className={`flex min-h-11 items-center gap-3 px-4 py-3 ${estiloOpcion(marcada)}`}>
       <input
         type={tipo}
         name={name}
@@ -184,6 +180,27 @@ function Opcion({
         className="h-5 w-5 flex-none accent-[var(--bronze)]"
       />
       <span className="font-sans text-base text-ink">{valor}</span>
+    </label>
+  )
+}
+
+function Chip({
+  name,
+  valor,
+  marcada,
+  onChange,
+}: {
+  name: string
+  valor: string
+  marcada: boolean
+  onChange: () => void
+}) {
+  return (
+    <label
+      className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-4 font-sans text-base text-ink ${estiloOpcion(marcada)}`}
+    >
+      <input type="radio" name={name} value={valor} checked={marcada} onChange={onChange} className="sr-only" />
+      {valor}
     </label>
   )
 }
@@ -312,9 +329,9 @@ function FormularioDiagnostico() {
 
     const r = respuestas
     const datos = {
-      anios_ejercicio: Number(r.anios_ejercicio),
-      abogados: Number(r.abogados),
-      apoyo: Number(r.apoyo),
+      anios_ejercicio: r.anios_ejercicio,
+      abogados: r.abogados,
+      apoyo: r.apoyo,
       fueros: r.fueros,
       fueros_otros: r.fueros.includes('Otros') ? r.fueros_otros.trim() : '',
       consultas_mes: r.consultas_mes,
@@ -372,18 +389,12 @@ function FormularioDiagnostico() {
     else setPaso((p) => p + 1)
   }
 
-  // Enter avanza; en la pregunta de tres números pasa al campo siguiente.
+  // Enter avanza cuando el paso es válido.
   const manejarEnter = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key !== 'Enter') return
     const destino = e.target as HTMLElement
     if (['TEXTAREA', 'BUTTON', 'A'].includes(destino.tagName)) return
     e.preventDefault()
-    const numeros = Array.from(e.currentTarget.querySelectorAll<HTMLInputElement>('input[data-numero]'))
-    const i = numeros.indexOf(destino as HTMLInputElement)
-    if (i >= 0 && i < numeros.length - 1) {
-      numeros[i + 1].focus()
-      return
-    }
     avanzar()
   }
 
@@ -420,38 +431,38 @@ function FormularioDiagnostico() {
     const idTitulo = `diag-titulo-${paso}`
     let cuerpo: ReactNode
 
-    if (pregunta.tipo === 'numeros') {
+    if (pregunta.tipo === 'chips') {
       cuerpo = (
-        <div className="flex flex-col gap-5">
-          {pregunta.campos.map((campo) => {
-            const error = errorNumero(respuestas[campo.clave], campo.min, campo.max) || avisoServidor([campo.clave])
+        <div className="flex flex-col gap-7">
+          {pregunta.grupos.map((grupo) => {
+            const ayuda = 'ayuda' in grupo ? `diag-${grupo.clave}-ayuda` : ''
             return (
-              <div key={campo.clave}>
-                <label htmlFor={`diag-${campo.clave}`} className="block font-sans text-[0.97rem] text-ink">
-                  {campo.label}
-                </label>
-                {'ayuda' in campo && (
-                  <p id={`diag-${campo.clave}-ayuda`} className="mt-1 font-sans text-sm text-slate">
-                    {campo.ayuda}
+              <fieldset
+                key={grupo.clave}
+                aria-describedby={`${ayuda} diag-${grupo.clave}-error`.trim()}
+                className="m-0 min-w-0 border-0 p-0"
+              >
+                <legend className="p-0 font-sans text-[0.97rem] text-ink">{grupo.label}</legend>
+                {'ayuda' in grupo && (
+                  <p id={ayuda} className="mt-1 font-sans text-sm text-slate">
+                    {grupo.ayuda}
                   </p>
                 )}
-                <input
-                  id={`diag-${campo.clave}`}
-                  data-numero
-                  type="text"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  autoComplete="off"
-                  value={respuestas[campo.clave]}
-                  onChange={(e) => setCampo(campo.clave, e.target.value.replace(/\D/g, '').slice(0, 3))}
-                  aria-invalid={error ? true : undefined}
-                  aria-describedby={`${'ayuda' in campo ? `diag-${campo.clave}-ayuda ` : ''}diag-${campo.clave}-error`}
-                  className={`mt-2 max-w-[10rem] ${INPUT}`}
-                />
-                <p id={`diag-${campo.clave}-error`} aria-live="polite" className={`mt-2 ${ERROR}`}>
-                  {error}
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {grupo.opciones.map((opcion) => (
+                    <Chip
+                      key={opcion}
+                      name={grupo.clave}
+                      valor={opcion}
+                      marcada={respuestas[grupo.clave] === opcion}
+                      onChange={() => setCampo(grupo.clave, opcion)}
+                    />
+                  ))}
+                </div>
+                <p id={`diag-${grupo.clave}-error`} aria-live="polite" className={`mt-2 ${ERROR}`}>
+                  {avisoServidor([grupo.clave])}
                 </p>
-              </div>
+              </fieldset>
             )
           })}
         </div>

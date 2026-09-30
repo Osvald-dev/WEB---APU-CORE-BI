@@ -263,7 +263,7 @@ export const contenido = {
       {
         numero: "Paso 1",
         titulo: "Formulario",
-        texto: "**Ocho preguntas, tres minutos.** Nos contás cómo funciona tu estudio hoy y elegís el horario.",
+        texto: "**Ocho preguntas, tres minutos.** Al terminar nos comunicamos con vos para coordinar la videollamada.",
       },
       {
         numero: "Paso 2",
@@ -297,27 +297,33 @@ export const contenido = {
     cerrar: "Cerrar formulario",
     inicio: {
       titulo: "Contanos cómo funciona tu estudio hoy",
-      texto: "Ocho preguntas, tres minutos. Al terminar elegís el horario de la videollamada.",
+      texto: "Ocho preguntas, tres minutos. Al terminar nos comunicamos con vos para coordinar la videollamada.",
       boton: "Empezar",
     },
     indicador: "Pregunta {n} de {total}",
     anterior: "Anterior",
     siguiente: "Siguiente",
-    errorRango: "Ingresá un número entre {min} y {max}.",
     errorServidor: "Revisá esta respuesta y volvé a enviar.",
     preguntas: [
       {
-        tipo: "numeros",
+        tipo: "chips",
         titulo: "¿Hace cuánto ejercés y cómo está formado el estudio hoy?",
-        campos: [
-          { clave: "anios_ejercicio", label: "Años de ejercicio", min: 0, max: 70 },
-          { clave: "abogados", label: "Cantidad de abogados, contándote", min: 1, max: 100 },
+        grupos: [
+          {
+            clave: "anios_ejercicio",
+            label: "Años de ejercicio",
+            opciones: ["1", "2", "3", "4", "5", "6 a 10", "Más de 10"],
+          },
+          {
+            clave: "abogados",
+            label: "Cantidad de abogados, contándote",
+            opciones: ["1", "2", "3", "4", "5", "Más de 5"],
+          },
           {
             clave: "apoyo",
             label: "Cantidad de personas de apoyo",
-            ayuda: "Secretaría, administración, cadetería. Si no tenés, poné 0.",
-            min: 0,
-            max: 100,
+            ayuda: "Secretaría, administración, cadetería.",
+            opciones: ["Ninguna", "1", "2", "3", "4", "5", "Más de 5"],
           },
         ],
       },
@@ -396,7 +402,7 @@ export const contenido = {
       errorRequerido: "Completá este campo.",
       errorEmail: "Revisá el email: parece incompleto.",
       errorWhatsapp: "Ingresá el número con código de área, al menos 8 dígitos.",
-      enviar: "Enviar y elegir horario",
+      enviar: "Enviar para que se comuniquen",
       enviando: "Enviando…",
       errorEnvio: "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp",
       reintentar: "Reintentar",
