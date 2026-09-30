@@ -4,5 +4,6 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/WEB---APU-CORE-BI/',
+  // Raíz del dominio (Hostinger). GitHub Pages pasa su subcarpeta con --base en predeploy.
+  base: '/',
 })

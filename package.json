@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "tsc -b && vite build --base=/WEB---APU-CORE-BI/",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
