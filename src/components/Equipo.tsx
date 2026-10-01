@@ -1,34 +1,5 @@
-import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { contenido } from '../data/contenido'
-
-function iniciales(nombre: string) {
-  const partes = nombre.trim().split(/\s+/)
-  const primera = partes[0]?.[0] ?? ''
-  const ultima = partes.length > 1 ? partes[partes.length - 1][0] : ''
-  return (primera + ultima).toUpperCase()
-}
-
-function PersonaFoto({ nombre, foto }: { nombre: string; foto: string }) {
-  const [error, setError] = useState(false)
-
-  if (error) {
-    return (
-      <div className="flex h-[132px] w-[132px] flex-none items-center justify-center rounded-full bg-line-soft">
-        <span className="font-serif-display text-2xl text-ink">{iniciales(nombre)}</span>
-      </div>
-    )
-  }
-
-  return (
-    <img
-      src={foto}
-      alt={nombre}
-      onError={() => setError(true)}
-      className="h-[132px] w-[132px] flex-none rounded-full object-cover grayscale-[0.25]"
-    />
-  )
-}
 
 const container = (stagger: number) => ({
   hidden: {},
@@ -58,23 +29,35 @@ function Equipo() {
 
         <p className="mt-6 max-w-[62ch] font-sans text-slate">{equipo.lede}</p>
 
-        <motion.div
-          className="mt-12 grid grid-cols-1 gap-[34px] min-[760px]:grid-cols-2 min-[760px]:gap-11"
+        <motion.ul
+          className="mt-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={container(shouldReduceMotion ? 0 : 0.12)}
         >
           {equipo.personas.map((persona) => (
-            <motion.div key={persona.nombre} variants={item}>
-              <PersonaFoto nombre={persona.nombre} foto={persona.foto} />
-
-              <h3 className="mt-5 font-serif-display text-xl text-ink">{persona.nombre}</h3>
-              <p className="mt-1 font-sans text-sm text-bronze">{persona.rol}</p>
-              <p className="mt-3 font-sans text-[0.95rem] text-slate">{persona.bio}</p>
-            </motion.div>
+            // Desktop: foto | nombre | descripción. Mobile: foto | nombre, descripción abajo a todo el ancho.
+            <motion.li
+              key={persona.nombre}
+              variants={item}
+              className="grid grid-cols-[56px_minmax(0,1fr)] items-center gap-x-4 gap-y-3 border-t border-line py-6 min-[641px]:grid-cols-[72px_minmax(0,1fr)_minmax(0,1.6fr)] min-[641px]:gap-6"
+            >
+              <img
+                src={persona.foto}
+                alt={persona.nombre}
+                width={72}
+                height={72}
+                loading="lazy"
+                className="h-14 w-14 rounded-full object-cover object-[center_top] min-[641px]:h-[72px] min-[641px]:w-[72px]"
+              />
+              <h3 className="font-serif-display text-xl text-ink">{persona.nombre}</h3>
+              <p className="col-span-full font-sans text-[0.95rem] text-slate min-[641px]:col-span-1">
+                {persona.descripcion}
+              </p>
+            </motion.li>
           ))}
-        </motion.div>
+        </motion.ul>
       </div>
     </section>
   )

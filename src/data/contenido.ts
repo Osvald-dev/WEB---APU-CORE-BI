@@ -1,3 +1,8 @@
+import fotoAndres from "../assets/img/andres.webp"
+import fotoOsvaldo from "../assets/img/osvaldo.webp"
+import fotoRomina from "../assets/img/romina.webp"
+import fotoRocio from "../assets/img/rocio.webp"
+
 // Formulario previo al diagnóstico. Todos los CTA de la web apuntan acá:
 // el hash abre FormularioDiagnostico.tsx en pantalla completa.
 export const URL_FORMULARIO = "#diagnostico"
@@ -242,15 +247,23 @@ export const contenido = {
     personas: [
       {
         nombre: "Andrés Royón",
-        rol: "Sistemas, procesos y análisis",
-        foto: "/media/equipo/andres.jpg",
-        bio: "Licenciado en administración de empresas. Diseñó y opera el sistema completo de dos estudios jurídicos: gestión de casos, clasificación de consultas, control de cobranza e informes de rentabilidad por fuero. Se ocupa del diagnóstico, la arquitectura del sistema y el análisis de los números.",
+        foto: fotoAndres,
+        descripcion: "Lic. en Administración. El sistema y el análisis de los números.",
       },
       {
         nombre: "Osvaldo Casabella",
-        rol: "Contenido, producción y campañas",
-        foto: "/media/equipo/osvi.jpg",
-        bio: "Community manager y realizador audiovisual. Lleva la producción de contenido y las campañas pagas de ambos estudios: guion, grabación, edición, publicación y gestión de pauta en Meta. Se ocupa de que el estudio tenga algo que mostrar y de que llegue a quien tiene que llegar.",
+        foto: fotoOsvaldo,
+        descripcion: "Especialista en comunicaciones. Marketing, contenido y campañas en Meta.",
+      },
+      {
+        nombre: "Dra. Romina Ayelén Ludueña",
+        foto: fotoRomina,
+        descripcion: "Abogada. La mirada del ejercicio, todos los días.",
+      },
+      {
+        nombre: "Florencia Mikaela",
+        foto: fotoRocio,
+        descripcion: "Especialista en recepción y secretaría jurídica. Nos dice cómo filtrar.",
       },
     ],
   },
