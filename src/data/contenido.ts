@@ -4,7 +4,7 @@ export const URL_FORMULARIO = "#diagnostico"
 
 // Apps Script que recibe las respuestas y las guarda en la planilla.
 export const URL_APPS_SCRIPT =
-  "https://script.google.com/macros/s/AKfycbxa6HwxJ_5pUSGF-BLXsKttqSA1mAmcrRij5NzOZtNvyo6fSsWmgtcQNncZAq4xs63Y/exec"
+  "https://script.google.com/macros/s/AKfycbxq8Jk_f4eYBJkilDjjFbOM8DfzGjh5bt8BjmwBYT8LsY3X8HQ2QviTeLEO473MbSrrqw/exec"
 
 // Las URL entre corchetes se consideran pendientes: la confirmación del
 // formulario las reemplaza por el aviso de que coordinamos por WhatsApp.
