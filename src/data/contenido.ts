@@ -33,6 +33,8 @@ export const contenido = {
     ],
     ctaLabel: "Agendar diagnóstico",
     ctaHref: URL_FORMULARIO,
+    appLabel: "App para clientes",
+    appHref: "https://app.apucorebi.com/",
   },
   hero: {
     titulo: "Estudiaste años para ejercer el derecho. Terminaste administrando una pyme entera.",
@@ -242,7 +244,7 @@ export const contenido = {
   equipo: {
     id: "equipo",
     eyebrow: "Quiénes somos",
-    titulo: "Somos dos",
+    titulo: "Somos cuatro",
     lede: "No tercerizamos: el que te atiende en la videollamada es el que después hace el trabajo.",
     personas: [
       {
@@ -251,14 +253,14 @@ export const contenido = {
         descripcion: "Lic. en Administración. El sistema y el análisis de los números.",
       },
       {
-        nombre: "Osvaldo Casabella",
-        foto: fotoOsvaldo,
-        descripcion: "Especialista en comunicaciones. Marketing, contenido y campañas en Meta.",
-      },
-      {
         nombre: "Dra. Romina Ayelén Ludueña",
         foto: fotoRomina,
         descripcion: "Abogada. La mirada del ejercicio, todos los días.",
+      },
+      {
+        nombre: "Osvaldo Casabella",
+        foto: fotoOsvaldo,
+        descripcion: "Especialista en comunicaciones. Marketing, contenido y campañas en Meta.",
       },
       {
         nombre: "Florencia Mikaela",
@@ -438,7 +440,7 @@ export const contenido = {
   footer: {
     marca: "APU Core BI — Consultoría de crecimiento",
     links: [
-      { label: "LinkedIn", href: "#" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/apucorebi/" },
       { label: "Instagram", href: "#" },
       { label: "WhatsApp", href: "#" },
     ],

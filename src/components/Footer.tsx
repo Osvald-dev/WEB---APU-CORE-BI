@@ -18,6 +18,7 @@ function Footer() {
               {i > 0 && <span aria-hidden="true">·</span>}
               <a
                 href={link.href}
+                {...(link.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
                 className="border-b border-white/25 text-paper/90 transition-colors hover:border-white/50"
               >
                 {link.label}

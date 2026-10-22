@@ -24,12 +24,23 @@ function Nav() {
             ))}
           </nav>
 
-          <a
-            href={nav.ctaHref}
-            className="border border-ink bg-ink px-4 py-2 font-sans text-sm text-paper transition-colors hover:bg-transparent hover:text-ink"
-          >
-            {nav.ctaLabel}
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href={nav.appHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-ink px-4 py-2 font-sans text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
+            >
+              {nav.appLabel}
+            </a>
+
+            <a
+              href={nav.ctaHref}
+              className="border border-ink bg-ink px-4 py-2 font-sans text-sm text-paper transition-colors hover:bg-transparent hover:text-ink"
+            >
+              {nav.ctaLabel}
+            </a>
+          </div>
         </div>
       </div>
     </header>
