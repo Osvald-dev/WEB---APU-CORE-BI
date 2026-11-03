@@ -441,7 +441,7 @@ export const contenido = {
     marca: "APU Core BI — Consultoría de crecimiento",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/company/apucorebi/" },
-      { label: "Instagram", href: "#" },
+      { label: "Instagram", href: "https://www.instagram.com/apucore_bi/" },
       { label: "WhatsApp", href: "#" },
     ],
   },

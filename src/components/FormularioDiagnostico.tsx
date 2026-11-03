@@ -368,6 +368,9 @@ function FormularioDiagnostico() {
         if (pasos.length) setPaso(Math.min(...pasos))
         return
       }
+      // Meta Pixel: un Lead por envío, solo si Apps Script confirmó el guardado.
+      const fbq = (window as Window & { fbq?: (...args: unknown[]) => void }).fbq
+      if (typeof fbq === 'function') fbq('track', 'Lead')
       setNombreConfirmado(datos.nombre)
       setRespuestas(VACIAS)
       setInicio(null)
