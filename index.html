@@ -63,7 +63,9 @@
     </script>
 
     <!-- Meta Pixel Code -->
+    <!-- Solo en el dominio real: en GitHub Pages y en local no se carga ni mide nada. -->
     <script>
+      if (/(^|\.)apucorebi\.com$/.test(location.hostname)) {
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -74,6 +76,7 @@
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1460131969404486');
       fbq('track', 'PageView');
+      }
     </script>
     <!-- End Meta Pixel Code -->
   </head>
