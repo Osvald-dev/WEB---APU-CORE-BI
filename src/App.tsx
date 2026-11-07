@@ -1,10 +1,11 @@
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Problema from './components/Problema'
+import Sac from './components/Sac'
 import Sistema from './components/Sistema'
 import ComoTrabajamos from './components/ComoTrabajamos'
-import CasosResultados from './components/CasosResultados'
 import Planes from './components/Planes'
+import Preguntas from './components/Preguntas'
 import Equipo from './components/Equipo'
 import ComoEmpezamos from './components/ComoEmpezamos'
 import CTAFinal from './components/CTAFinal'
@@ -17,10 +18,11 @@ function App() {
       <Nav />
       <Hero />
       <Problema />
+      <Sac />
       <Sistema />
       <ComoTrabajamos />
-      <CasosResultados />
       <Planes />
+      <Preguntas />
       <Equipo />
       <ComoEmpezamos />
       <CTAFinal />

@@ -2,6 +2,7 @@ import fotoAndres from "../assets/img/andres.webp"
 import fotoOsvaldo from "../assets/img/osvaldo.webp"
 import fotoRomina from "../assets/img/romina.webp"
 import fotoRocio from "../assets/img/rocio.webp"
+import { capturas } from "./capturas"
 
 // Formulario previo al diagnóstico. Todos los CTA de la web apuntan acá:
 // el hash abre FormularioDiagnostico.tsx en pantalla completa.
@@ -15,18 +16,14 @@ export const URL_APPS_SCRIPT =
 // formulario las reemplaza por el aviso de que coordinamos por WhatsApp.
 // TODO: reemplazar por el link real del calendario.
 export const URL_CALENDARIO = "[URL]"
-// TODO: reemplazar por el link real de pago.
-export const URL_PAGO = "[URL]"
 // TODO: reemplazar por el link real (https://wa.me/549...).
 export const WHATSAPP_CONTACTO = "[URL wa.me]"
-// TODO: confirmar el monto antes de publicar.
-export const PRECIO_DIAGNOSTICO = "$80.000"
 
 export const contenido = {
   nav: {
     marca: "APU Core BI",
     links: [
-      { label: "El problema", href: "#problema" },
+      { label: "El SAC", href: "#sac" },
       { label: "El sistema", href: "#sistema" },
       { label: "Planes", href: "#planes" },
       { label: "Quiénes somos", href: "#equipo" },
@@ -37,11 +34,18 @@ export const contenido = {
     appHref: "https://app.apucorebi.com/",
   },
   hero: {
+    etiqueta: "Para abogados y estudios jurídicos",
     titulo: "Estudiaste años para ejercer el derecho. Terminaste administrando una pyme entera.",
-    lede: "Secretaría, agenda, cobranzas, publicidad, atención al cliente, números. Todo eso lo llevás vos, entre audiencia y audiencia. **Ordenamos esas áreas una por una para que el estudio crezca sin que vos sumes horas.**",
-    publico: "Para abogados que trabajan solos y estudios de hasta cinco personas.",
-    ctaPrimario: { label: "Agendar diagnóstico", href: URL_FORMULARIO },
-    ctaSecundario: { label: "Ver cómo trabajamos", href: "#sistema" },
+    lede: "Secretaría, agenda, cobranzas, publicidad, números: todo eso lo llevás vos, entre audiencia y audiencia. Ordenamos esas áreas una por una, y empezamos por la que más mañanas te come: **la ronda del SAC, que de ahora en más la hace el sistema.**",
+    ctaPrimario: { label: "Ver cómo funciona", href: "#sac" },
+    ctaSecundario: { label: "Agendar diagnóstico", href: URL_FORMULARIO },
+    notaCta: "Ocho preguntas, tres minutos. Sin costo.",
+    captura: {
+      archivos: capturas.hero,
+      alt: "Pantalla del SAC en el sistema: el expediente que corre plazo, con el vencimiento calculado, el texto del juzgado y la tarea ya asignada.",
+      pie: "Pantalla real del sistema. Los datos son de ejemplo.",
+    },
+    confianza: "Somos cuatro: una abogada en ejercicio, un administrador, un especialista en comunicación y una secretaria jurídica. Lo construimos para un estudio propio y lo operamos todos los días.",
     // La palabra rotativa "hoy sos..." se maneja como componente aparte
     // (HeroRotativo.tsx), no como parte del texto
   },
@@ -84,6 +88,141 @@ export const contenido = {
       ],
     },
   },
+  // Sección 4 de NOTAS-WEB-SAC.md. 4.4 va en versión «hacé la cuenta» hasta el
+  // OK de Romi para publicar los tiempos medidos. 4.6 sin la tabla del PDF:
+  // solo Córdoba funciona hoy.
+  sac: {
+    id: "sac",
+    eyebrow: "El SAC, automatizado",
+    titulo: "El problema no es el SAC. Es la ronda.",
+    lede: "El SAC funciona. El problema es que avisa de a uno y no avisa a nadie: **hay que entrar, expediente por expediente, a ver si salió algo.**",
+    rondaIntro: "Un estudio con 89 expedientes vivos hace esa ronda todos los días. Tres cosas se rompen siempre:",
+    roturas: [
+      {
+        titulo: "Se mira de más",
+        texto: "La mayoría de los expedientes no tiene nada nuevo, pero hay que abrirlos igual.",
+      },
+      {
+        titulo: "Se mira de menos",
+        texto: "Cuando la semana aprieta, la ronda se saltea. Un expediente que nadie mira hace 45 días es un plazo esperando.",
+      },
+      {
+        titulo: "El plazo vive en la cabeza de alguien",
+        texto: "O en un papel. Si esa persona se toma licencia, el plazo se va con ella.",
+      },
+    ],
+    queHace: {
+      titulo: "Qué hace",
+      lede: "Tres cosas, y ninguna le pide al estudio cambiar cómo trabaja.",
+      items: [
+        {
+          titulo: "La ronda queda ordenada",
+          texto: "El sistema sabe cuáles son los expedientes vivos y cuándo se miró cada uno. **Los da de a uno, empezando por el que hace más tiempo que nadie toca**, con el número listo para pegar. Un botón dice «nada nuevo» y pasa al siguiente; otro dice «salió algo» y abre la carga.",
+          imagen: {
+            archivos: capturas.ronda,
+            alt: "Pantalla del SAC: arriba el expediente que corre plazo y al costado la ronda del día, con el número de expediente listo para copiar y los botones «Nada nuevo» y «Salió algo».",
+          },
+        },
+        {
+          titulo: "El plazo se calcula solo",
+          texto: "Cuando se carga una novedad, el sistema reconoce el acto —traslado, vista, emplazamiento, cédula, pericia— y **cuenta los días hábiles según el código que corresponde.**",
+          imagen: {
+            archivos: capturas.plazos,
+            alt: "Lista de tareas con los plazos del juzgado primero: cada uno muestra el acto, cuántos días hábiles faltan y la fecha de vencimiento.",
+          },
+        },
+        {
+          titulo: "La tarea nace con el plazo",
+          texto: "Esa novedad deja de ser un texto del juzgado y pasa a ser **una tarea con dueño, con fecha y con el caso enganchado.** Aparece primero en Inicio, primero en las tareas y primero en el mail de la mañana.",
+          imagen: {
+            archivos: capturas.inicio,
+            alt: "Pantalla de Inicio: los plazos del juzgado aparecen arriba de todo, cada uno con su responsable, el caso y la fecha de vencimiento.",
+          },
+        },
+      ],
+      cierre: "Nadie se acuerda de nada. El sistema se acuerda.",
+    },
+    dia: {
+      titulo: "El día, de punta a punta",
+      pasos: [
+        { hora: "8:00", titulo: "La ronda", texto: "Arriba lo que corre plazo; al costado, la ronda del día con la barra de progreso." },
+        { hora: "8:30", titulo: "La carga", texto: "Lo que salió se pega en el sistema. Detecta el acto, calcula el vencimiento y crea la tarea con dueño." },
+        { hora: "9:45", titulo: "El mail de la mañana", texto: "Llega solo, con las citas del día, los seguimientos, los plazos que vencen y las novedades recién cargadas." },
+        { hora: "Durante el día", titulo: "Lo que corre plazo, primero", texto: "Queda arriba de todo en todas las pantallas." },
+        { hora: "17:30", titulo: "El mail del cierre", texto: "Qué entró, qué se agendó, qué se trabajó y qué quedó para mañana." },
+      ],
+      cierre: "Nadie abre una planilla. Nadie manda un «¿lo hiciste?» por WhatsApp.",
+      imagen: {
+        archivos: capturas.mails,
+        alt: "Los dos mails del día, uno al lado del otro: el de las 9:45 con citas, seguimientos, plazos y novedades del SAC, y el de las 17:30 con el resumen del cierre.",
+      },
+    },
+    cuenta: {
+      titulo: "El tiempo que te devuelve",
+      destacado: "Hacé la cuenta con los tuyos.",
+      lineas: [
+        "Dos minutos por expediente, si no hay nada para leer.",
+        "Por la cantidad de expedientes vivos que tenés.",
+        "Todos los días.",
+      ],
+      cierre: "Con el sistema, esa ronda es una lista ordenada que se recorre de a uno y se termina.",
+    },
+    plazos: {
+      titulo: "Los plazos se cuentan conservadores, a propósito",
+      puntos: [
+        { titulo: "Sin horas de gracia", texto: "El vencimiento queda a las 08:00 del último día hábil. Mejor sobrar una mañana que presentar a las 11 de un día que ya venció." },
+        { titulo: "La feria de enero está por código", texto: "La configuración solo puede ampliar el rango, nunca achicarlo." },
+        { titulo: "El acto decide los días", texto: "Un traslado no son los mismos días que una vista o una cédula." },
+        { titulo: "Se puede auditar", texto: "Cada plazo muestra desde cuándo corre, cuántos días hábiles se contaron y qué novedad lo originó. No hay número mágico." },
+      ],
+      nota: "**El sistema nunca decide solo:** propone un plazo conservador y el abogado lo confirma antes de que quede cargado. Así una feria extraordinaria o una suspensión las ve una persona, no un algoritmo.",
+    },
+    provincias: {
+      titulo: "Dónde funciona",
+      items: [
+        {
+          nombre: "Córdoba",
+          estado: "Funcionando",
+          activo: true,
+          texto: "SAC por Servicios Extranet, probado con expedientes reales.",
+        },
+        {
+          nombre: "Mendoza, Santa Fe y San Luis",
+          estado: "En desarrollo",
+          activo: false,
+          texto: "Ya sabemos qué portal usa cada una y qué cambia: la tabla de actos y plazos, y el calendario de feria. El resto del sistema es idéntico.",
+        },
+      ],
+      aviso: "Contanos tu provincia y te avisamos cuando esté lista.",
+    },
+    noHace: {
+      titulo: "Qué no hace",
+      lede: "Lo decimos de entrada, porque un estudio se da cuenta en la primera semana.",
+      // «No vive en Estados Unidos» queda afuera hasta resolver el bloqueo 1 (cuenta de Google por estudio).
+      puntos: [
+        { titulo: "No entra al portal judicial por su cuenta", texto: "La sesión es del abogado, con su matrícula y su clave, y así tiene que ser. El sistema ordena la ronda, pero el que abre el portal es una persona." },
+        { titulo: "No decide por vos", texto: "Propone el plazo y el tipo de acto; el abogado confirma. Lo que queda asentado es lo que confirmó una persona." },
+        { titulo: "No da consejo legal", texto: "Ni al cliente ni al estudio." },
+      ],
+    },
+    puestaEnMarcha: {
+      titulo: "Cómo se pone en marcha",
+      lede: "El abogado no carga nada. **En una semana ya está andando con tus expedientes.**",
+      // TODO: ajustar si se decide cobrar la carga inicial como onboarding aparte.
+      pasos: [
+        { numero: "Día 1", titulo: "El botón y las alertas, activos", texto: "Quedan funcionando el mismo día. Lo que lleva tiempo es cargar los expedientes vivos." },
+        { numero: "La carga", titulo: "La hacemos nosotros", texto: "Carátula, cliente y etapa de cada expediente vivo. Para un estudio de unos 90 expedientes es una tarde de trabajo, **y la hace nuestro equipo, no el estudio.**" },
+        { numero: "Día 3", titulo: "La primera ronda, con el abogado mirando", texto: "La confirmamos juntos, expediente por expediente." },
+      ],
+    },
+    notaCapturas: "Las pantallas son reales; los nombres y los datos, de ejemplo. Ningún expediente de un cliente aparece en esta página.",
+    cierre: {
+      planes: "La automatización del SAC viene con los planes [Operación y Dirección](#planes).",
+      ctaLabel: "Agendar diagnóstico",
+      ctaHref: URL_FORMULARIO,
+      notaCta: "Ocho preguntas, tres minutos. Sin costo.",
+    },
+  },
   sistema: {
     id: "sistema",
     eyebrow: "El sistema",
@@ -116,7 +255,7 @@ export const contenido = {
       {
         numero: "04",
         titulo: "Gestión",
-        texto: "Un sistema propio donde viven clientes, casos, citas, seguimientos y tareas del equipo. Se abre con un link y el mail de cada persona, con los permisos que corresponden. **Incluye la carga de novedades del portal judicial y el reparto diario de tareas entre abogados y secretaría.**",
+        texto: "Un sistema propio donde viven clientes, casos, citas, seguimientos y tareas del equipo. Se abre con un link y el mail de cada persona, con los permisos que corresponden. Incluye **[la automatización del SAC](#sac)**: la ronda ordenada, el plazo calculado y los dos mails por día.",
         tags: ["Clientes y casos", "Citas y seguimientos", "Tareas por persona", "Planes de pago"],
       },
       {
@@ -217,6 +356,7 @@ export const contenido = {
           "Clasificación y filtrado de cada consulta",
           "Capacitación de quien atiende",
           "Medición de consultas recibidas contra captadas",
+          "La ronda del SAC ordenada, el plazo calculado y los dos mails por día",
         ],
         ctaLabel: "Pedir presupuesto",
         ctaHref: URL_FORMULARIO,
@@ -238,8 +378,43 @@ export const contenido = {
       },
     ],
     resumen: "El primero te trae los clientes correctos. El segundo, además, se asegura de que no se te pierdan por el camino. El tercero, además, te dice mes a mes dónde está el problema y qué conviene cambiar.",
-    notaGestion: "**¿Por qué el sistema de gestión va en los tres?** Porque sin registrar qué consultas terminan siendo clientes, la publicidad aprende a conseguir clics, no clientes.",
+    notaGestion: "**¿Por qué el sistema de gestión va en los tres?** Porque sin registrar qué consultas terminan siendo clientes, la publicidad aprende a conseguir clics, no clientes. **La automatización del SAC, en cambio, viene desde Operación.**",
     notaPrecios: "Los tres planes se cotizan después del diagnóstico. Trabajamos con un pago de implementación por única vez, que se puede dividir en dos meses sin recargo, y un abono mensual fijo. La inversión en publicidad la pagás directo a Meta y nunca pasa por nosotros. Sin costos ocultos ni permanencia mínima.",
+  },
+  // Sección 8 de NOTAS-WEB-SAC.md. Quedan afuera hasta destrabarse: dónde
+  // quedan los datos (bloqueo 1), la entrega de datos al irse (falta el proceso
+  // de exportación) y el tiempo de respuesta ante una caída (sin decidir).
+  // La 2 describe el flujo y no promete quién responde: falta la cláusula firmada.
+  preguntas: {
+    id: "preguntas",
+    eyebrow: "Preguntas que nos hacen",
+    titulo: "Lo que un abogado pregunta antes de confiarle sus plazos a un sistema",
+    items: [
+      {
+        pregunta: "¿Entran ustedes a mi SAC?",
+        respuesta: "No. **La sesión es tuya, con tu matrícula y tu clave.** El sistema te ordena la ronda; el que abre el portal sos vos o tu secretaría.",
+      },
+      {
+        pregunta: "¿Y si el sistema cuenta mal un plazo?",
+        respuesta: "El cómputo es conservador y se puede auditar: cada plazo muestra desde cuándo corre, cuántos días hábiles se contaron y qué novedad lo originó. **El sistema propone y el abogado confirma antes de que quede cargado**, así que lo que queda asentado lo confirmó una persona.",
+      },
+      {
+        pregunta: "¿Tengo que cambiar cómo trabajo?",
+        respuesta: "No. Las tres cosas que hace el sistema —ordenar la ronda, calcular el plazo y crear la tarea— **no le piden al estudio cambiar su forma de trabajar.**",
+      },
+      {
+        pregunta: "¿Cuánto tarda y cuánto trabajo me da?",
+        respuesta: "**En una semana está andando con tus expedientes.** La carga inicial de los expedientes vivos la hace nuestro equipo, no el estudio.",
+      },
+      {
+        pregunta: "¿Quién mantiene el cálculo de los plazos?",
+        respuesta: "Lo mantiene el equipo de APU Core BI. **Si cambia un criterio o sale un plenario, actualizamos el cálculo y el estudio no toca nada.**",
+      },
+      {
+        pregunta: "¿Cuántas personas del estudio pueden usarlo?",
+        respuesta: "El sistema no tiene un límite de personas: **cada una entra con su propio mail y con los permisos que le corresponden.** Cómo se cotiza lo definimos en la propuesta, después del diagnóstico.",
+      },
+    ],
   },
   equipo: {
     id: "equipo",
@@ -272,13 +447,13 @@ export const contenido = {
   comoEmpezamos: {
     id: "como-empezamos",
     eyebrow: "Cómo empezamos",
-    titulo: "El diagnóstico tiene un costo, y se descuenta íntegro del primer mes si decidís avanzar",
-    lede: "Cobramos esa primera instancia porque es trabajo real: relevamos tu operación y te entregamos un documento, avancemos o no.",
+    titulo: "El diagnóstico no te cuesta nada. Lo único que te pedimos es una hora de tu tiempo",
+    lede: "Relevamos cómo funciona tu estudio con tus respuestas en la mano y te devolvemos lo que vemos, avancemos o no. **Por eso te pedimos que, si completás el formulario, te comprometas a la videollamada: preparamos esa hora para vos.**",
     pasos: [
       {
         numero: "Paso 1",
         titulo: "Formulario",
-        texto: "**Ocho preguntas, tres minutos.** Al terminar nos comunicamos con vos para coordinar la videollamada.",
+        texto: "**Ocho preguntas, tres minutos.** Al terminar nos comunicamos con vos para coordinar la videollamada. **Completarlo es comprometerte a esa hora.**",
       },
       {
         numero: "Paso 2",
@@ -300,11 +475,11 @@ export const contenido = {
   ctaFinal: {
     cierre: "La profesión es para disfrutarla, no para vivir sobre ella. Nuestro trabajo es que el estudio rinda más sin que vos sumes horas.",
     titulo: "Contanos cómo funciona tu estudio hoy",
-    nota: "Si en la videollamada concluimos que no te podemos ayudar, **te lo decimos ahí mismo y no te cobramos el diagnóstico**.",
+    nota: "Si en la videollamada concluimos que no te podemos ayudar, **te lo decimos ahí mismo**.",
     ctaLabel: "Agendar la videollamada",
     ctaHref: URL_FORMULARIO,
-    notaCta: "Ocho preguntas, tres minutos.",
-    ubicacion: "Córdoba, Argentina. Trabajamos con estudios de todo el país por videollamada.",
+    notaCta: "Ocho preguntas, tres minutos. Sin costo.",
+    ubicacion: "Trabajamos con estudios de todo el país por videollamada.",
   },
   // Las opciones de las preguntas se copian tal cual: el Apps Script las valida.
   formulario: {
@@ -312,7 +487,7 @@ export const contenido = {
     cerrar: "Cerrar formulario",
     inicio: {
       titulo: "Contanos cómo funciona tu estudio hoy",
-      texto: "Ocho preguntas, tres minutos. Al terminar nos comunicamos con vos para coordinar la videollamada.",
+      texto: "Ocho preguntas, tres minutos. **Sin costo.** Al terminar nos comunicamos con vos para coordinar la videollamada. **Si lo completás, te pedimos que te comprometas a esa hora:** antes de la llamada leemos tus respuestas y la preparamos para vos.",
       boton: "Empezar",
     },
     indicador: "Pregunta {n} de {total}",
@@ -426,7 +601,6 @@ export const contenido = {
     confirmacion: {
       titulo: "Listo, {nombre}. Recibimos tus respuestas.",
       calendario: { texto: "Elegí el horario de la videollamada", boton: "Elegir horario" },
-      pago: { texto: "Aboná el diagnóstico ({precio}). Se descuenta íntegro si avanzás", boton: "Ir al pago" },
       pendiente: "Te escribimos por WhatsApp en menos de 24 horas para coordinar",
       volver: "Volver a la web",
     },

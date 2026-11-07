@@ -30,7 +30,9 @@ function ComoEmpezamos() {
           {comoEmpezamos.titulo}
         </h2>
 
-        <p className="mt-6 max-w-[62ch] font-sans text-slate">{comoEmpezamos.lede}</p>
+        <p className="mt-6 max-w-[62ch] font-sans text-slate">
+          <RichText text={comoEmpezamos.lede} />
+        </p>
 
         <motion.div
           className="mt-12 grid grid-cols-1 gap-px bg-line min-[520px]:grid-cols-2 min-[860px]:grid-cols-4"

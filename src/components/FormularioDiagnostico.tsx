@@ -4,14 +4,13 @@ import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import {
   contenido,
-  PRECIO_DIAGNOSTICO,
   URL_APPS_SCRIPT,
   URL_CALENDARIO,
   URL_FORMULARIO,
-  URL_PAGO,
   WHATSAPP_CONTACTO,
 } from '../data/contenido'
 import logoApu from '../assets/logoapu.png'
+import RichText from './RichText'
 
 const { formulario } = contenido
 const { preguntas, contacto } = formulario
@@ -423,7 +422,8 @@ function FormularioDiagnostico() {
         <h2 ref={tituloRef} tabIndex={-1} className={`mt-3 ${TITULO}`}>
           {formulario.inicio.titulo}
         </h2>
-        <p className="mt-6 max-w-[52ch] font-sans text-[1.1rem] text-slate">{formulario.inicio.texto}</p>
+        <p className="mt-6 max-w-[52ch] font-sans text-[1.1rem] text-slate"><RichText text={formulario.inicio.texto} />
+        </p>
         <button type="button" onClick={empezar} className={`mt-8 ${BOTON_PRIMARIO}`}>
           {formulario.inicio.boton}
         </button>
@@ -624,7 +624,6 @@ function FormularioDiagnostico() {
   } else {
     const { confirmacion } = formulario
     const pasos: ReactNode[] = []
-    const pendientes = [URL_CALENDARIO, URL_PAGO].filter(esPendiente).length
     const linkPaso = (texto: string, href: string, boton: string) => (
       <>
         <p className="font-sans text-base font-semibold text-ink">{texto}</p>
@@ -633,17 +632,13 @@ function FormularioDiagnostico() {
         </a>
       </>
     )
-    const pendiente = <p className="font-sans text-base text-ink">{confirmacion.pendiente}</p>
 
-    if (!esPendiente(URL_CALENDARIO)) {
+    // El diagnóstico no tiene costo: el único paso es coordinar la videollamada.
+    // Hasta que exista el link del calendario, coordinamos por WhatsApp.
+    if (esPendiente(URL_CALENDARIO)) {
+      pasos.push(<p className="font-sans text-base text-ink">{confirmacion.pendiente}</p>)
+    } else {
       pasos.push(linkPaso(confirmacion.calendario.texto, URL_CALENDARIO, confirmacion.calendario.boton))
-    }
-    // Si faltan los dos links, el aviso de WhatsApp aparece una sola vez.
-    if (pendientes > 0) pasos.push(pendiente)
-    if (!esPendiente(URL_PAGO)) {
-      pasos.push(
-        linkPaso(completar(confirmacion.pago.texto, { precio: PRECIO_DIAGNOSTICO }), URL_PAGO, confirmacion.pago.boton),
-      )
     }
 
     pantalla = (

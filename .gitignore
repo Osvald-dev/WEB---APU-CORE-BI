@@ -56,3 +56,6 @@ Thumbs.db
 
 # Paquete para subir a Hostinger
 *.zip
+
+# Notas internas, no publicar
+NOTAS-WEB-SAC.md
